@@ -1,10 +1,29 @@
-version: '3.8'
+version: '3.7'
 
 services:
-  ffc-template-node:
+  ffc-demo-collector:
     build:
       context: .
       target: production
-    image: ffc-template-node
-    container_name: ffc-template-node
-    environment: {}
+    image: ffc-demo-collector
+    container_name: ffc-demo-collector
+    
+  zookeeper:
+    image: bitnami/zookeeper
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+    
+  kafka:
+    image: bitnami/kafka
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,CLIENT:SASL_PLAINTEXT
+      KAFKA_CFG_LISTENERS: INTERNAL://:9092,CLIENT://:9093,
+      KAFKA_CFG_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,CLIENT://kafka:9093
+      KAFKA_CFG_SASL_ENABLED_MECHANISMS: PLAIN,SCRAM-SHA-256,SCRAM-SHA-512
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CLIENT_USERS: kafka
+      KAFKA_CLIENT_PASSWORDS: kafka
+      KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper

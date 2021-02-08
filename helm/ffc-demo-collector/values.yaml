@@ -1,13 +1,13 @@
 environment: development
-name: ffc-template-node
+name: ffc-demo-collector
 namespace: ffc-demo
 workstream: ffc-demo
-image: ffc-template-node
+image: ffc-demo-collector
 
 labels: {}
 
 containerConfigMap:
-  name: ffc-template-node-config-map
+  name: ffc-demo-collector-config-map
 
 deployment:
   restartPolicy: Always

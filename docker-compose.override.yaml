@@ -1,17 +1,43 @@
-version: '3.8'
+version: '3.7'
 
 # This override file should be used when running this service in isolation
 # to provide dependencies and expose ports for local testing
 
 services:
-  ffc-template-node:
+  ffc-demo-collector:
     build:
       target: development
-    image: ffc-template-node-development
-    container_name: ffc-template-node-development
+    image: ffc-demo-collector
+    container_name: ffc-demo-collector
     ports:
-      - "3000:3000"
       - "9229:9229"
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
+    environment:
+      KAFKA_CLIENT_USER: kafka
+      KAFKA_CLIENT_PASSWORD: kafka
+    command: >
+      sh -c "
+        scripts/wait-for kafka:9093 --
+        npm run start:watch"
+    depends_on:
+      - kafka
+
+  zookeeper:
+    tmpfs: "/datalog"
+    ports:
+      - "2182:2181"
+    
+  kafka:
+    ports:
+      - "9092:9092"
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    ports:
+      - 9000:9000
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+    depends_on:
+      - kafka
