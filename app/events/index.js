@@ -4,6 +4,7 @@ const { EventReceiver } = require('ffc-events')
 let receiver
 
 async function start () {
+  console.log(config)
   const action = event => processClaimEvent(event)
   receiver = new EventReceiver(config, action)
   await receiver.connect()
