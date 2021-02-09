@@ -1,45 +1,18 @@
-const config = require('../config').kafka
-const { Kafka, logLevel } = require('kafkajs')
-let consumer
+const config = require('../config').events
+const processClaimEvent = require('./process-claim-event')
+const { EventReceiver } = require('ffc-events')
+let receiver
 
-const kafka = new Kafka({
-  logLevel: logLevel.DEBUG,
-  brokers: [`${config.host}:${config.port}`],
-  clientId: config.clientId,
-  sasl: {
-    mechanism: config.mechanism,
-    username: config.username,
-    password: config.password
-  }
-})
-
-const subscribe = async () => {
-  consumer = kafka.consumer({ groupId: 'ffc-demo-collector' })
-  await consumer.connect()
-  await consumer.subscribe({ topic: config.topic, fromBeginning: true })
-  await consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
-      console.log({
-        partition,
-        offset: message.offset,
-        value: message.value.toString()
-      })
-    }
-  })
+async function start () {
+  const action = event => processClaimEvent(event)
+  receiver = new EventReceiver(config, action)
+  await receiver.connect()
+  await receiver.subscribe()
+  console.info('Ready to receive events')
 }
 
-const stop = async () => {
-  await consumer.disconnect()
+async function stop () {
+  await receiver.closeConnection()
 }
 
-process.on('SIGINT', async () => {
-  await consumer.disconnect()
-})
-
-process.on('SIGTERM', async () => {
-  await consumer.disconnect()
-})
-
-module.exports = {
-  subscribe, stop
-}
+module.exports = { start, stop }

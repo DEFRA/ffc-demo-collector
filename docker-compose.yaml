@@ -7,7 +7,19 @@ services:
       target: production
     image: ffc-demo-collector
     container_name: ffc-demo-collector
-    
+    environment:
+      APPINSIGHTS_CLOUDROLE: ffc-demo-collector-local
+      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
+      EVENT_HOST: kafka
+      EVENT_USERNAME: kafka
+      EVENT_PASSWORD: kafka
+      POSTGRES_DB: ffc_demo_collector
+      POSTGRES_HOST: ${POSTGRES_HOST:-ffc-demo-collector-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_SCHEMA_PASSWORD:-ppp}
+      POSTGRES_PORT: 5432
+      POSTGRES_SCHEMA_NAME: ${POSTGRES_SCHEMA_NAME:-public}
+      POSTGRES_USERNAME: ${POSTGRES_SCHEMA_USERNAME:-postgres}
+
   zookeeper:
     image: bitnami/zookeeper
     environment:
@@ -27,3 +39,10 @@ services:
       KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on:
       - zookeeper
+
+  ffc-demo-collector-postgres:
+    image: postgres:11.4-alpine
+    environment:
+      POSTGRES_DB: ffc_demo_collector
+      POSTGRES_PASSWORD: ppp
+      POSTGRES_USERNAME: postgres

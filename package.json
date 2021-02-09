@@ -13,6 +13,9 @@
   "contributors": [],
   "license": "OGL-UK-3.0",
   "dependencies": {
+    "applicationinsights": "^1.8.9",
+    "ffc-events": "^1.0.0-alpha.1",
+    "joi": "^17.4.0",
     "kafkajs": "^1.15.0"
   },
   "devDependencies": {

@@ -6,12 +6,23 @@ image: ffc-demo-collector
 
 labels: {}
 
+appInsights:
+  key:
+
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: ffc-demo-collector-config-map
 
+containerSecret:
+  name: ffc-demo-collector-container-secret
+  type: Opaque
+
 deployment:
   restartPolicy: Always
-  priorityClassName: default
+  priorityClassName: low
   replicas: 1
   minReadySeconds: 0
   redeployOnChange: update this field to force a change
@@ -20,24 +31,30 @@ deployment:
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 120Mi
-  requestCpu: 120m
-  limitMemory: 120Mi
-  limitCpu: 120m
+  requestMemory: 60Mi
+  requestCpu: 40m
+  limitMemory: 60Mi
+  limitCpu: 40m
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
-  port: 3000
+  eventHost: kafka
+  eventPort: 9093
+  eventMechanism: scram-sha-512
+  eventClientId: ffc-demo-collector
+  eventConsumerGroupId: ffc-demo-collector
+  claimUpdateTopicName: ffc-demo-collector-claim-update
+  claimUpdateTopic: ffc-demo-claim-update
+  claimUpdateFromBeginning: true
 
-livenessProbe:
-  path: /healthz
-  port: 3000
-  initialDelaySeconds: 10
-  periodSeconds: 10
-  failureThreshold: 3
+postgresService:
+  postgresDb: ffc_demo_collector
+  # postgresExternalName is the external host name to which PostgreSQL
+  # requests should be forwarded. If empty, PostgreSQL is assumed to be
+  # within the cluster and accessible via postgresHost
+  postgresExternalName:
+  postgresHost: ffc-demo-collector-postgres
+  postgresPort: 5432
+  postgresSchema: public
+  postgresUser: postgres
 
-readinessProbe:
-  path: /healthy
-  port: 3000
-  initialDelaySeconds: 10
-  periodSeconds: 10
-  failureThreshold: 3
+aadPodIdentity: true

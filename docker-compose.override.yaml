@@ -14,9 +14,7 @@ services:
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
-    environment:
-      KAFKA_CLIENT_USER: kafka
-      KAFKA_CLIENT_PASSWORD: kafka
+      - ./scripts/:/home/node/scripts/
     command: >
       sh -c "
         scripts/wait-for kafka:9093 --
@@ -41,3 +39,12 @@ services:
       KAFKA_BROKERCONNECT: kafka:9092
     depends_on:
       - kafka
+
+  ffc-demo-collector-postgres:
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: {}
