@@ -9,6 +9,9 @@ services:
       target: development
     image: ffc-demo-collector-development
     container_name: ffc-demo-collector-test
+    depends_on:
+      - kafka
+      - zookeeper
     command: >
       sh -c "
         scripts/wait-for kafka:9093 --
