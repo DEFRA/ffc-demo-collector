@@ -20,7 +20,7 @@ if (result.error) {
 }
 const value = result.value
 
-value.events = eventConfig
+value.eventConfig = eventConfig
 value.dbConfig = dbConfig
 
 module.exports = value

@@ -1,4 +1,4 @@
-const config = require('../config').events
+const config = require('../config').eventConfig
 const processClaimEvent = require('./process-claim-event')
 const { EventReceiver } = require('ffc-events')
 let receiver
