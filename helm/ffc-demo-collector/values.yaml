@@ -41,7 +41,7 @@ container:
   eventPort: 9093
   eventMechanism: scram-sha-512
   eventClientId: ffc-demo-collector
-  eventConsumerGroupId: ffc-demo-collector
+  eventConsumerGroupId: ffc-demo-collector-claim-update
   claimUpdateTopicName: ffc-demo-collector-claim-update
   claimUpdateTopic: ffc-demo-claim-update
   claimUpdateFromBeginning: true

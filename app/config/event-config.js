@@ -10,7 +10,7 @@ const schema = joi.object({
   mechanism: joi.string().default('scram-sha-512'),
   topic: joi.string().default('ffc-demo-claim-update'),
   clientId: joi.string().default('ffc-demo-collector'),
-  consumerGroupId: joi.string().default('ffc-demo-collector'),
+  consumerGroupId: joi.string().default('ffc-demo-collector-claim-update'),
   fromBeginning: joi.bool().default(true),
   appInsights: joi.object()
 
