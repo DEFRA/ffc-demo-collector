@@ -9,6 +9,9 @@ services:
       target: development
     image: ffc-demo-collector-development
     container_name: ffc-demo-collector-test
+    depends_on:
+      - kafka
+      - zookeeper
     command: >
       sh -c "
         scripts/wait-for kafka:9093 --
@@ -18,5 +21,4 @@ services:
       - ./test/:/home/node/test/
       - ./test-output/:/home/node/test-output/
       - ./jest.config.js:/home/node/jest.config.js
-      - ./jest.setup.js:/home/node/jest.setup.js
       - ./package.json:/home/node/package.json
