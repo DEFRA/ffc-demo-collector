@@ -10,7 +10,7 @@ services:
     image: ffc-demo-collector
     container_name: ffc-demo-collector
     ports:
-      - "9229:9229"
+      - "9327:9229"
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
