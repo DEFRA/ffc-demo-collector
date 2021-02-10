@@ -1,6 +1,6 @@
 {
   "name": "ffc-demo-collector",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "FFC demo service event stream consumer",
   "homepage": "https://github.com/DEFRA/ffc-demo-collector",
   "main": "app/index.js",
