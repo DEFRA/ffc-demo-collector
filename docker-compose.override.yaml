@@ -24,8 +24,6 @@ services:
 
   zookeeper:
     tmpfs: "/datalog"
-    ports:
-      - "2182:2181"
     
   kafka:
     ports:
