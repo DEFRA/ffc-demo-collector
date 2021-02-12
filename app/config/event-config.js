@@ -12,8 +12,8 @@ const schema = joi.object({
   clientId: joi.string().default('ffc-demo-collector'),
   consumerGroupId: joi.string().default('ffc-demo-collector-claim-update'),
   fromBeginning: joi.bool().default(true),
-  appInsights: joi.object()
-
+  appInsights: joi.object(),
+  routingKey: joi.string().allow('')
 })
 
 const config = {
@@ -28,8 +28,8 @@ const config = {
   clientId: process.env.EVENT_CLIENT_ID,
   consumerGroupId: process.env.EVENT_CONSUMER_GROUP_ID,
   fromBeginning: process.env.CLAIM_UPDATE_FROM_BEGINNING,
-  appInsights: process.env.NODE_ENV === 'production' ? require('applicationinsights') : undefined
-
+  appInsights: process.env.NODE_ENV === 'production' ? require('applicationinsights') : undefined,
+  routingKey: process.env.EVENT_ROUTING_KEY
 }
 
 const result = schema.validate(config, {
