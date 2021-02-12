@@ -22,9 +22,6 @@ services:
     depends_on:
       - kafka
 
-  zookeeper:
-    tmpfs: "/datalog"
-    
   kafka:
     ports:
       - "9094:9094"
