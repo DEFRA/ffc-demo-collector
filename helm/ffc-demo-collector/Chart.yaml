@@ -5,5 +5,5 @@ name: ffc-demo-collector
 version: 1.0.0
 dependencies:
 - name: ffc-helm-library
-  version: ^2.5.2
+  version: ^2.5.3
   repository: https://raw.githubusercontent.com/defra/ffc-helm-repository/master/
