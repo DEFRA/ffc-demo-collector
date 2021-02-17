@@ -2,6 +2,9 @@
 {{- define "ffc-demo-collector.deployment" -}}
 spec:
   template:
+    metadata:
+      annotations:
+        linkerd.io/inject: disabled
     spec:
       containers:
       - {{ include "ffc-helm-library.container" (list . "ffc-demo-collector.container") }}
