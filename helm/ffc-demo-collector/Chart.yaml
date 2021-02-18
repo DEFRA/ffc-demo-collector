@@ -1,9 +1,9 @@
 apiVersion: v2
-description: description-of-project-goes-here
-name: ffc-template-node
+description: FFC demo service event stream consumer
+name: ffc-demo-collector
 # this version is automatically updated in the build pipline
 version: 1.0.0
 dependencies:
 - name: ffc-helm-library
-  version: ^1.0.0
+  version: ^2.5.3
   repository: https://raw.githubusercontent.com/defra/ffc-helm-repository/master/

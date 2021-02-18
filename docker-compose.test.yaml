@@ -1,14 +1,24 @@
-version: '3.8'
+version: '3.7'
 
 # This override file should be used when running automated tests so
 # that test output is saved to the host
 
 services:
-  ffc-template-node:
+  ffc-demo-collector:
     build:
       target: development
-    image: ffc-template-node-development
-    container_name: ffc-template-node-test
-    command: npm run test
+    image: ffc-demo-collector-development
+    container_name: ffc-demo-collector-test
+    depends_on:
+      - kafka
+      - zookeeper
+    command: >
+      sh -c "
+        scripts/wait-for kafka:9093 --
+        npm run test"
     volumes:
+      - ./app/:/home/node/app/
+      - ./test/:/home/node/test/
       - ./test-output/:/home/node/test-output/
+      - ./jest.config.js:/home/node/jest.config.js
+      - ./package.json:/home/node/package.json

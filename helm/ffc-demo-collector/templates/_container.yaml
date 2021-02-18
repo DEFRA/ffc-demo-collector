@@ -1,0 +1,2 @@
+{{- define "ffc-demo-collector.container" -}}
+{{- end -}}

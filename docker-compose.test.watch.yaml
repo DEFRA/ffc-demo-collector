@@ -1,6 +1,8 @@
-version: '3.8'
+version: '3.7'
 
 services:
-  ffc-template-node:
+  ffc-demo-collector:
     command: >
-      sh -c "npm run test:watch"
+      sh -c "
+        scripts/wait-for kafka:9093 --
+        npm run test:watch"
