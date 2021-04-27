@@ -1,13 +1,33 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.14.1
+version: v1.19.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-LODASH-1018905:
     - sequelize > lodash:
         reason: No fix
-        expires: '2021-03-19T09:15:46.669Z'
+        expires: '2021-05-27T15:40:39.832Z'
   SNYK-JS-LODASH-1040724:
     - sequelize > lodash:
         reason: No fix
-        expires: '2021-03-19T09:15:46.669Z'
+        expires: '2021-05-27T15:40:39.832Z'
+  SNYK-JS-UNDERSCORE-1080984:
+    - pg-hstore > underscore:
+        reason: No fix
+        expires: '2021-05-27T15:40:39.832Z'
+  SNYK-JS-VALIDATOR-1090599:
+    - sequelize > validator:
+        reason: No fix
+        expires: '2021-05-27T15:40:39.832Z'
+  SNYK-JS-VALIDATOR-1090600:
+    - sequelize > validator:
+        reason: No fix
+        expires: '2021-05-27T15:40:39.832Z'
+  SNYK-JS-VALIDATOR-1090601:
+    - sequelize > validator:
+        reason: No fix
+        expires: '2021-05-27T15:40:39.832Z'
+  SNYK-JS-VALIDATOR-1090602:
+    - sequelize > validator:
+        reason: No fix
+        expires: '2021-05-27T15:40:39.832Z'
 patch: {}

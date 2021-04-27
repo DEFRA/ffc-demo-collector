@@ -25,17 +25,13 @@ deployment:
   priorityClassName: low
   replicas: 1
   minReadySeconds: 0
-  runAsNonRoot: true
-  runAsUser: 1000
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 60Mi
-  requestCpu: 40m
+  requestMemory: 5Mi
+  requestCpu: 5m
   limitMemory: 60Mi
   limitCpu: 40m
-  readOnlyRootFilesystem: true
-  allowPrivilegeEscalation: false
   eventHost: kafka
   eventPort: 9093
   eventMechanism: scram-sha-512
