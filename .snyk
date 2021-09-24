@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.22.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-LODASH-1018905:
@@ -17,17 +17,30 @@ ignore:
   SNYK-JS-VALIDATOR-1090599:
     - sequelize > validator:
         reason: No fix
-        expires: '2021-05-27T15:40:39.832Z'
+        expires: '2021-10-24T21:29:08.419Z'
   SNYK-JS-VALIDATOR-1090600:
     - sequelize > validator:
         reason: No fix
-        expires: '2021-05-27T15:40:39.832Z'
+        expires: '2021-10-24T21:29:08.419Z'
   SNYK-JS-VALIDATOR-1090601:
     - sequelize > validator:
         reason: No fix
-        expires: '2021-05-27T15:40:39.832Z'
+        expires: '2021-10-24T21:29:08.419Z'
   SNYK-JS-VALIDATOR-1090602:
     - sequelize > validator:
         reason: No fix
-        expires: '2021-05-27T15:40:39.832Z'
+        expires: '2021-10-24T21:29:08.419Z'
+  SNYK-JS-AXIOS-1579269:
+    - '@azure/identity > axios':
+        reason: None given
+        expires: '2021-10-24T21:29:08.419Z'
+    - ffc-events > @azure/identity > axios:
+        reason: None given
+        expires: '2021-10-24T21:29:08.419Z'
+    - '@azure/identity > @azure/msal-node > axios':
+        reason: None given
+        expires: '2021-10-24T21:29:08.419Z'
+    - ffc-events > @azure/identity > @azure/msal-node > axios:
+        reason: None given
+        expires: '2021-10-24T21:29:08.419Z'
 patch: {}

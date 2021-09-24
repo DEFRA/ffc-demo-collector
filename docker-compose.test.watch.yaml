@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   ffc-demo-collector:
@@ -6,3 +6,5 @@ services:
       sh -c "
         scripts/wait-for kafka:9093 --
         npm run test:watch"
+    volumes:
+      - ./.git:/home/node/.git
