@@ -9,7 +9,7 @@ services:
     container_name: ffc-demo-collector
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-demo-collector-local
-      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
       EVENT_HOST: kafka
       EVENT_USERNAME: kafka
       EVENT_PASSWORD: kafka
