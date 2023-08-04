@@ -17,7 +17,7 @@
     "@azure/identity": "^1.2.2",
     "applicationinsights": "^1.8.9",
     "ffc-events": "^1.0.0",
-    "joi": "^17.4.0",
+    "joi": "^17.9.2",
     "kafkajs": "^1.15.0",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
