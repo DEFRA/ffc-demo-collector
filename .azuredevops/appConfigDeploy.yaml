@@ -25,7 +25,7 @@ resources:
       ref: refs/heads/rv/243236-AppConfigDeployTemplate
 
 extends:
-  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  template: /pipelines/common-appconfig-deploy.yaml@DEFRA-ADPPipelineCommon
   parameters:
     projectName: "FFCDemoCollector"
     appDeployConfig:
