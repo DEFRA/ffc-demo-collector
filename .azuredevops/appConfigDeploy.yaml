@@ -1,0 +1,32 @@
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - config/*
+  drafts: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+  paths:
+    include:
+      - config/*
+
+resources:
+  repositories:
+    - repository: DEFRA-ADPPipelineCommon
+      name: DEFRA/adp-pipeline-common
+      endpoint: DEFRA
+      type: github
+      ref: refs/heads/rv/243236-AppConfigDeployTemplate
+
+extends:
+  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  parameters:
+    projectName: "FFCDemoCollector"
+    appDeployConfig:
+      filepath: "./config"

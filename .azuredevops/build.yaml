@@ -32,8 +32,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      #ref: refs/heads/rv/test
-      ref: refs/heads/rv/243236-AppConfigDeployTemplate
+      ref: refs/heads/rv/test
 
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -45,7 +44,6 @@ extends:
       projectPath: "./package.json"
       manifestPath: "./package.json"
       imageRepoName: "ffc-demo-collector"
-      defaultBranch: "main"
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
     appDeployConfig:
